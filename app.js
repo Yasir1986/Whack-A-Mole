@@ -2,8 +2,7 @@ const square = document.querySelectorAll('.square')
 const mole = document.querySelectorAll('.mole')
 const timeLeft = document.querySelector('#time-left')
 let score = document.querySelector('#score')
-document.getElementById("start").addEventListener("click", startGame);
-
+document.getElementById("start").addEventListener("click", startGame)
 
 let result = 0
 let currentTime = timeLeft.textContent
