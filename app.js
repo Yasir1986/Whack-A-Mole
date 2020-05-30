@@ -9,6 +9,7 @@ let result = 0
 let currentTime = timeLeft.textContent
 
 function startGame() {
+        const userName =  window.prompt("Enter Player Name:")
         location.reload()
 }
 
@@ -38,6 +39,7 @@ function moveMole() {
     timerId = setInterval(randomSquare, 1000)
 }
 
+const userName = window.prompt("Enter Player Name:")
 moveMole()
 
 function countDown() {
@@ -46,9 +48,9 @@ function countDown() {
 
     if(currentTime === 0 ) {
         clearInterval(timerId)
-        alert('GAME OVER! Your final score is: ' + result)
+        alert(`GAME OVER! ${userName} your score is: `  + result)
         //to restart the game
-        //location.reload()
+        location.reload()
     }
 }
 
