@@ -50,7 +50,7 @@ function countDown() {
         clearInterval(timerId)
         alert(`GAME OVER! ${userName} your score is: `  + result)
         //to restart the game
-        location.reload()
+        //location.reload()
     }
 }
 
