@@ -1,23 +1,43 @@
 const square = document.querySelectorAll('.square')
 const mole = document.querySelectorAll('.mole')
 const timeLeft = document.querySelector('#time-left')
+const start = document.querySelector('#start')
 let score = document.querySelector('#score')
-document.getElementById("start").addEventListener("click", startGame)
+let audioBtn = document.querySelector('#music')
+let isPlaying = false
 
 let result = 0
 let currentTime = timeLeft.textContent
 
+// Setup for audio and looping
+audioBtn.addEventListener("click", function(){
+    const audio = new Audio('music.wav')
 
+    function togglePLay() {
+        if (isPlaying) {
+            audio.pause()
+        } else {
+            audio.play()
+        }
+    }
 
+    audio.onplaying = function() {
+        isPlaying = true
+    }
+    audio.onpause = function() {
+        isPlaying = false
+    }
 
+    togglePLay()
+    audio.loop = true
 
-document.querySelector('#music').addEventListener('click', function () {
-        var audioElement = new Audio('music.wav')
-        audioElement.play()
-        console.log("play")
 })
 
 
+
+
+
+start.addEventListener("click", startGame)
 
 function startGame() {
         location.reload()  
