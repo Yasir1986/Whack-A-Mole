@@ -7,8 +7,20 @@ document.getElementById("start").addEventListener("click", startGame)
 let result = 0
 let currentTime = timeLeft.textContent
 
+
+
+
+
+document.querySelector('#music').addEventListener('click', function () {
+        var audioElement = new Audio('music.wav')
+        audioElement.play()
+        console.log("play")
+})
+
+
+
 function startGame() {
-        location.reload()
+        location.reload()  
 }
 
 function randomSquare() {
@@ -38,6 +50,7 @@ function moveMole() {
 }
 
 const userName = window.prompt("Enter Player Name:")
+
 moveMole()
 
 function countDown() {
