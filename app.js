@@ -1,88 +1,78 @@
-const square = document.querySelectorAll('.square')
-const mole = document.querySelectorAll('.mole')
-const timeLeft = document.querySelector('#time-left')
-const start = document.querySelector('#start')
-let score = document.querySelector('#score')
-let audioBtn = document.querySelector('#music')
-let isPlaying = false
+const square = document.querySelectorAll(".square");
+const mole = document.querySelectorAll(".mole");
+const timeLeft = document.querySelector("#time-left");
+const start = document.querySelector("#start");
+let score = document.querySelector("#score");
+let audioBtn = document.querySelector("#music");
+let isPlaying = false;
 
-let result = 0
-let currentTime = timeLeft.textContent
+let result = 0;
+let currentTime = timeLeft.textContent;
 
 // Setup for audio and looping
-audioBtn.addEventListener("click", function(){
-    const audio = new Audio('music.wav')
+audioBtn.addEventListener("click", function () {
+  const audio = new Audio("music.wav");
+  audio.loop = true;
 
-    function togglePLay() {
-        if (isPlaying) {
-            audio.pause()
-        } else {
-            audio.play()
-        }
+  audio.onplaying = function () {
+    isPlaying = true;
+  };
+
+  function togglePLay() {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
     }
+  }
+  togglePLay();
+});
 
-    audio.onplaying = function() {
-        isPlaying = true
-    }
-    audio.onpause = function() {
-        isPlaying = false
-    }
-
-    togglePLay()
-    audio.loop = true
-
-})
-
-
-
-
-
-start.addEventListener("click", startGame)
+start.addEventListener("click", startGame);
 
 function startGame() {
-        location.reload()  
+  location.reload();
 }
 
 function randomSquare() {
-    square.forEach(className => {
-        className.classList.remove('mole')
-    })
-    let randomPosition = square[Math.floor(Math.random() * 9)]
-    randomPosition.classList.add('mole')
+  square.forEach((className) => {
+    className.classList.remove("mole");
+  });
+  let randomPosition = square[Math.floor(Math.random() * 9)];
+  randomPosition.classList.add("mole");
 
-    // assign the id of the randomPosition to hitPosition for us to use later
-    hitPosition = randomPosition.id
+  // assign the id of the randomPosition to hitPosition for us to use later
+  hitPosition = randomPosition.id;
 }
 
-
-square.forEach(id => {
-    id.addEventListener('mouseup', () => {
-        if(id.id === hitPosition) {
-            result = result + 1
-            score.textContent = result
-        }
-    })
-})
+square.forEach((id) => {
+  id.addEventListener("mouseup", () => {
+    if (id.id === hitPosition) {
+      result = result + 1;
+      score.textContent = result;
+    }
+  });
+});
 
 function moveMole() {
-    let timerId = null
-    timerId = setInterval(randomSquare, 1000)
+  let timerId = null;
+  timerId = setInterval(randomSquare, 1000);
 }
 
-const userName = window.prompt("Enter Player Name:")
+const userName = window.prompt("Enter Player Name:");
 
-moveMole()
+moveMole();
 
 function countDown() {
-    currentTime--
-    timeLeft.textContent = currentTime
+  currentTime--;
+  timeLeft.textContent = currentTime;
 
-    if(currentTime === 0 ) {
-        clearInterval(timerId)
-        alert(`GAME OVER! ${userName} your score is: `  + result)
-        document.querySelector('#score').innerHTML = ''
-        location.reload()
-    }
+  if (currentTime === 0) {
+    clearInterval(timerId);
+    alert(`GAME OVER! ${userName} your score is: ` + result);
+    document.querySelector("#score").innerHTML = "";
+    location.reload();
+  }
 }
 
-let timerId = setInterval(countDown, 1000)
+let timerId = setInterval(countDown, 1000);
