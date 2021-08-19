@@ -1,15 +1,22 @@
+.container {
+  text-align: center;
+}
+.score {
+  display: flex;
+  justify-content: space-evenly;
+}
 .square {
   width: 200px;
   height: 200px;
   border-style: solid;
   border-color: black;
 }
-
 .grid {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-content: center;
+  margin: auto;
   width: 618px;
   height: 618px;
 }
